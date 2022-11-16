@@ -1,3 +1,5 @@
+USE BENASXDATABASE;
+
 -- create table of Dates
 CREATE TABLE [dbo].[Dates] (
  [Id]						UNIQUEIDENTIFIER	NOT NULL DEFAULT NEWID()
