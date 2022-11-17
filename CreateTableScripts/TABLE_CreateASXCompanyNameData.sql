@@ -15,7 +15,7 @@ CREATE TABLE [dbo].[ASXCompaniesTemp] (
 BULK INSERT 
 	[dbo].[ASXCompaniesTemp]
 FROM 
-	"C:\Users\vboxuser\Documents\GitHub\ASXSharePrices\ShareCompaniesCSV\ASX_Listed_Companies.csv"
+	"C:\Users\vboxuser\Documents\SQL Server Management Studio\ASXSharePrices\ShareCompaniesCSV\ASX_Listed_CompaniesNoListingDate.csv"
 WITH (FIELDTERMINATOR = ',', ROWTERMINATOR = '\n')
 GO
 
