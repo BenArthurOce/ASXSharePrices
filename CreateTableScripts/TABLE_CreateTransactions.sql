@@ -102,10 +102,40 @@ VALUES
 	(130649857, 'INA', 20220303, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'Buy'), 1000, 5.0672, 5067.24, 19.95, 5087.19, 1, 0)
 
 
+INSERT INTO [dbo].[ShareTransactions]
+	([ASXCode], [Date], [TypeId], [Quantity], [UnitPrice], [TradeValue], [Brokerage], [TotalValue], [IsIncrease], [IsDecrease])
+
+
+VALUES
+	('INA', 20210325, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 23, 4.8484, 111.5132, 0, 111.5132, 1, 0),
+	('BEN', 20210331, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 14, 9.72, 136.08, 0, 136.08, 1, 0),
+	('WBC', 20210625, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 10, 25.98, 259.8, 0, 259.8, 1, 0),
+	('ANZ', 20210701, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 9, 27.91, 251.19, 0, 251.19, 1, 0),
+	('NAB', 20210702, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 12, 26.65, 319.8, 0, 319.8, 1, 0),
+	('INA', 20210923, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 20, 6.244, 124.88, 0, 124.88, 1, 0),
+	('QBE', 20210924, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 3, 11.84, 35.52, 0, 35.52, 1, 0),
+	('CBA', 20210929, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 1, 101, 101, 0, 101, 1, 0),
+	('BEN', 20210930, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 14, 9.49, 132.86, 0, 132.86, 1, 0),
+	('NAB', 20211215, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 13, 28, 364, 0, 364, 1, 0),
+	('ANZ', 20211216, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 10, 27.68, 276.8, 0, 276.8, 1, 0),
+	('WBC', 20211221, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 12, 22.34, 268.08, 0, 268.08, 1, 0),
+	('INA', 20220324, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 24, 5.06, 121.44, 0, 121.44, 1, 0),
+	('CBA', 20220330, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 2, 97.95, 195.9, 0, 195.9, 1, 0),
+	('BEN', 20220331, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 15, 9.7, 145.5, 0, 145.5, 1, 0),
+	('QBE', 20220412, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 6, 11.12, 66.72, 0, 66.72, 1, 0),
+	('WBC', 20220624, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 12, 23.96, 287.52, 0, 287.52, 1, 0),
+	('ANZ', 20220701, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 11, 25.52, 280.72, 0, 280.72, 1, 0),
+	('NAB', 20220705, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 14, 31.35, 438.9, 0, 438.9, 1, 0),
+	('QBE', 20220923, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 3, 12.12, 36.36, 0, 36.36, 1, 0),
+	('BEN', 20220926, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 17, 8.55, 145.35, 0, 145.35, 1, 0),
+	('CBA', 20220929, (SELECT [Id] FROM [TransactionTypes] WHERE [Type] = 'DRP'), 1, 96.44, 96.44, 0, 96.44, 1, 0)
+
+
+
 
 
 
 --DROP TABLE [ShareTransactions]
 --DROP TABLE [TransactionTypes]
 
-SELECT * FROM [ShareTransactions] WHERE [ASXCode] = 'CBA' ORDER BY [Date]
+SELECT * FROM [ShareTransactions] WHERE [ASXCode] = 'INA' ORDER BY [Date]
