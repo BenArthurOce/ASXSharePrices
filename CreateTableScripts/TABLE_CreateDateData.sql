@@ -1,16 +1,78 @@
-USE [BENASXDATABASE]
-GO
+USE BENASXDATABASE;
 
-CREATE PROC spGenerateDateTable
-	(
-		 @in_StartDate	DATE
-		,@in_EndDate	DATE
-	)
-AS
-BEGIN
+-- create table of TEMP Dates
+CREATE TABLE [dbo].[Temp_AllDates] (
+ [DateKey]	BIGINT NOT NULL 
+,[Date]		DATE NOT NULL
+,[DayInt]	BIGINT NOT NULL
+,[DayInt00]	NUMERIC NOT NULL
+,[DayOrdinal]	NVARCHAR(10) NOT NULL
+,[WeekDayInt]	BIGINT NOT NULL
+,[WeekdayFull]	NVARCHAR(10) NOT NULL
+,[WeekdayAbv]	NVARCHAR(10) NOT NULL
+,[IsWeekday]		BIT NOT NULL
+,[IsWeekEnd]		BIT NOT NULL
+,[MonthInt]		BIGINT NOT NULL
+,[MonthInt00]	NUMERIC NOT NULL
+,[MonthStringFull]	NVARCHAR(12) NOT NULL
+,[MonthStringAbv]	NVARCHAR(10) NOT NULL
+,[YearCalendar]		BIGINT NOT NULL
+,[YearFinancial]		BIGINT NOT NULL
+,[IsLeapYear]		BIGINT NOT NULL
+,[QuarterCalendarInt]	BIGINT NOT NULL
+,[QuarterFinancialInt]	BIGINT NOT NULL
+,[DaysInMonth]			BIGINT NOT NULL
+,[DayOfYear]				BIGINT NOT NULL
+,[DaysLeftInYear]		BIGINT NOT NULL
+,[YearMonthInt]			BIGINT NOT NULL
+,[MonthYearStringFull]	NVARCHAR(25) NOT NULL
+,[MonthYearStringAbv]	NVARCHAR(25) NOT NULL
+,[YearMonthStringFull]	NVARCHAR(25) NOT NULL
+,[YearMonthStringAbv]	NVARCHAR(25) NOT NULL
+,[FullDateStringLong]	NVARCHAR(60) NOT NULL
+)
 
-DECLARE @StartDate		DATE = @in_StartDate
-DECLARE @EndDate		DATE = @in_EndDate
+-- create table of Dates
+CREATE TABLE [dbo].[AllDates] (
+ [Id]		UNIQUEIDENTIFIER	NOT NULL DEFAULT NEWID()
+,[DateKey]	BIGINT NOT NULL 
+,[Date]		DATE NOT NULL
+,[DayInt]	BIGINT NOT NULL
+,[DayInt00]	NUMERIC NOT NULL
+,[DayOrdinal]	NVARCHAR(10) NOT NULL
+,[WeekDayInt]	BIGINT NOT NULL
+,[WeekdayFull]	NVARCHAR(10) NOT NULL
+,[WeekdayAbv]	NVARCHAR(10) NOT NULL
+,[IsWeekday]		BIT NOT NULL
+,[IsWeekEnd]		BIT NOT NULL
+,[MonthInt]		BIGINT NOT NULL
+,[MonthInt00]	NUMERIC NOT NULL
+,[MonthStringFull]	NVARCHAR(12) NOT NULL
+,[MonthStringAbv]	NVARCHAR(10) NOT NULL
+,[YearCalendar]		BIGINT NOT NULL
+,[YearFinancial]		BIGINT NOT NULL
+,[IsLeapYear]		BIGINT NOT NULL
+,[QuarterCalendarInt]	BIGINT NOT NULL
+,[QuarterFinancialInt]	BIGINT NOT NULL
+,[DaysInMonth]			BIGINT NOT NULL
+,[DayOfYear]				BIGINT NOT NULL
+,[DaysLeftInYear]		BIGINT NOT NULL
+,[YearMonthInt]			BIGINT NOT NULL
+,[MonthYearStringFull]	NVARCHAR(25) NOT NULL
+,[MonthYearStringAbv]	NVARCHAR(25) NOT NULL
+,[YearMonthStringFull]	NVARCHAR(25) NOT NULL
+,[YearMonthStringAbv]	NVARCHAR(25) NOT NULL
+,[FullDateStringLong]	NVARCHAR(60) NOT NULL
+,CONSTRAINT [PK_DateId] PRIMARY KEY CLUSTERED ([Id] ASC)
+ON [PRIMARY]) ON [PRIMARY]
+
+
+
+
+
+
+DECLARE @StartDate		DATE = '1995-01-01'
+DECLARE @EndDate		DATE = '2027-12-31'
 SET DATEFIRST 1;
 
 ;WITH DateList AS
@@ -227,6 +289,30 @@ SET DATEFIRST 1;
     FROM DateList
 	WHERE DATEADD(DD, [n], @StartDate) < @EndDate
 )
-SELECT * FROM DateList OPTION (MAXRECURSION 20000)
 
-END
+-- FILL TEMP TABLE DATA
+--==========================
+INSERT INTO [dbo].[Temp_AllDates]
+(DateKey, Date, DayInt, DayInt00, DayOrdinal, WeekDayInt, WeekdayFull, WeekdayAbv, IsWeekday, IsWeekEnd, MonthInt, MonthInt00, MonthStringFull, MonthStringAbv, YearCalendar, YearFinancial, IsLeapYear, QuarterCalendarInt, QuarterFinancialInt, DaysInMonth, DayOfYear, DaysLeftInYear, YearMonthInt, MonthYearStringFull, MonthYearStringAbv, YearMonthStringFull, YearMonthStringAbv, FullDateStringLong)
+
+SELECT 
+	DateKey, Date, DayInt, DayInt00, DayOrdinal, WeekDayInt, WeekdayFull, WeekdayAbv, IsWeekday, IsWeekEnd, MonthInt, MonthInt00, MonthStringFull, MonthStringAbv, YearCalendar, YearFinancial, IsLeapYear, QuarterCalendarInt, QuarterFinancialInt, DaysInMonth, DayOfYear, DaysLeftInYear, YearMonthInt, MonthYearStringFull, MonthYearStringAbv, YearMonthStringFull, YearMonthStringAbv, FullDateStringLong
+FROM 
+	DateList OPTION (MAXRECURSION 20000)
+
+
+
+-- TRANSFER TO NEW TABLE AND DELETE OLD
+--==========================
+
+
+
+--Transfer the Data from the temp table
+insert [dbo].[AllDates]
+  (DateKey, Date, DayInt, DayInt00, DayOrdinal, WeekDayInt, WeekdayFull, WeekdayAbv, IsWeekday, IsWeekEnd, MonthInt, MonthInt00, MonthStringFull, MonthStringAbv, YearCalendar, YearFinancial, IsLeapYear, QuarterCalendarInt, QuarterFinancialInt, DaysInMonth, DayOfYear, DaysLeftInYear, YearMonthInt, MonthYearStringFull, MonthYearStringAbv, YearMonthStringFull, YearMonthStringAbv, FullDateStringLong)
+select 
+	DateKey, Date, DayInt, DayInt00, DayOrdinal, WeekDayInt, WeekdayFull, WeekdayAbv, IsWeekday, IsWeekEnd, MonthInt, MonthInt00, MonthStringFull, MonthStringAbv, YearCalendar, YearFinancial, IsLeapYear, QuarterCalendarInt, QuarterFinancialInt, DaysInMonth, DayOfYear, DaysLeftInYear, YearMonthInt, MonthYearStringFull, MonthYearStringAbv, YearMonthStringFull, YearMonthStringAbv, FullDateStringLong
+from [dbo].[Temp_AllDates]
+
+-- After transfering the temp data, delete it.
+DROP TABLE [dbo].[Temp_AllDates]
