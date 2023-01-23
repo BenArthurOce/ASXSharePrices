@@ -12,11 +12,11 @@ BEGIN
 	SET NOCOUNT ON ;
 
 	SELECT 
-		 [Dates].[DateKey]
-		,[Dates].[DayInt]
-		,[Dates].[MonthInt]
-		,[Dates].[YearCalendar]
-		,[Prices].[PriceHigh]
+		 [Dates].[DateKey]			AS [DateKey]
+		,[Dates].[DayInt]			AS [DayInt]
+		,[Dates].[MonthInt]			AS [MonthInt]
+		,[Dates].[YearCalendar]		AS [YearCalendar]
+		,[Prices].[PriceHigh]		AS [Price]
 
 	FROM 
 		[dbo].[AllDates] [Dates]
