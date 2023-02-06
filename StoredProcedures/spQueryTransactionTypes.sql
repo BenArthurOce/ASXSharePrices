@@ -8,7 +8,9 @@ BEGIN
 
 	SET NOCOUNT ON ;
 
-	SELECT [Types].[Type]
-	FROM [dbo].[ShareTransactionTypes] [Types]
+	SELECT [Types].[Name]
+	FROM [dbo].[ShareTransactionType] [Types]
+	WHERE [Types].[isDeleted] = 0
+	ORDER BY [Types].[Name]
 
 END
