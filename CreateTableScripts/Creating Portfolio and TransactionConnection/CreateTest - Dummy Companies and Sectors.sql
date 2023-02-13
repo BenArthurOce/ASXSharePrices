@@ -28,8 +28,9 @@ VALUES
 	('Materials'),
 	('Real Estate'),
 	('Unclassified'),
-	('Utilities')
-
+	('Utilities'),
+	('Unknown, Other'),
+	('Indexes or Sectors')
 
 
 

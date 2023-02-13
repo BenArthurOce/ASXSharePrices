@@ -289,6 +289,8 @@ SET DATEFIRST 1;
     FROM DateList
 	WHERE DATEADD(DD, [n], @StartDate) < @EndDate
 )
+CREATE NONCLUSTERED INDEX IX_AllDates_DateKey
+ON dbo.AllDates (DateKey)
 
 -- FILL TEMP TABLE DATA
 --==========================

@@ -1,0 +1,6 @@
+CREATE NONCLUSTERED INDEX IX_ASXSharePrices_ASXDate
+ON dbo.ASXSharePrices (ASXDate)
+
+
+CREATE NONCLUSTERED INDEX IX_ASXSharePrices_ASXCode
+ON dbo.ASXSharePrices (ASXCode)
